@@ -38,7 +38,14 @@ exports.likeComment = async (req, res, next) => {
     }
     
     
+      const userIndex = comment.likes.indexOf(req.query.userId);
+    if (userIndex === -1) {
       comment.numberOfLikes += 1;
+      comment.likes.push(req.query.userId);
+    } else {
+      comment.numberOfLikes -= 1;
+      comment.likes.splice(userIndex, 1);
+    }
       
     
     await comment.save();
