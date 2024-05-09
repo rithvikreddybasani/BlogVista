@@ -7,8 +7,17 @@ const authRoutes = require("./routes/auth.route.js");
 const postRoutes = require("./routes/post.route.js");
 const commentRoutes = require("./routes/comment.route.js");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 dotenv.config(); // Setting up the environmental variables
+
+app.use(
+  cors({
+    origin: ["https://mern-blog-client-eta.vercel.app/"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -22,9 +31,9 @@ mongoose
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
   res.send("Hello");
-})
+});
 
 // Use the userRoutes as middleware
 app.use("/api/user", userRoutes);
