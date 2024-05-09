@@ -79,55 +79,60 @@ const Header = () => {
           className="w-40 h-8 text-xs" // Adjust width and height as needed
         />
       </form>
-      <div className="flex items-center gap-2 md:order-2 relative">
+      <div className="flex items-center gap-2 md:order-2">
         {currentUser && currentUser.validUser ? (
-          <>
-            <Avatar
-              alt="user"
-              img={currentUser.validUser.profilePicture}
-              rounded
-              className="cursor-pointer"
-            />
-            <Dropdown
-              arrowIcon={false}
-              style={{ top: "2rem", right: 0 }}
-              className="absolute z-50"
+          <Dropdown
+            arrowIcon={false}
+            style={{ backgroundColor: "transparent", border: "none" }}
+            label={
+              <Avatar
+                alt="user"
+                img={currentUser.validUser.profilePicture}
+                rounded
+                style={{ margin: "auto" }}
+              />
+            }
+          >
+            <Dropdown.Header>
+              <Avatar
+                alt="user"
+                img={currentUser.validUser.profilePicture}
+                rounded
+                style={{ margin: "auto" }}
+              />
+              <span className="block text-sm">
+                @{currentUser.validUser.username}
+              </span>
+              <span className="block text-sm font-medium truncate">
+                {currentUser.validUser.email}
+              </span>
+            </Dropdown.Header>
+            <Link to={"/dashboard?tab=profile"}>
+              <Dropdown.Item>Profile</Dropdown.Item>
+            </Link>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleSignOut}>Sign Out</Dropdown.Item>
+            <Dropdown.Divider />
+            <DropdownItem
+              className="w-12 h-10"
+              color="grey"
+              onClick={() => dispatch(toggleTheme())}
             >
-              <Dropdown.Header>
-                <span className="block text-sm">
-                  @{currentUser.validUser.username}
-                </span>
-                <span className="block text-sm font-medium truncate">
-                  {currentUser.validUser.email}
-                </span>
-              </Dropdown.Header>
-              <Link to={"/dashboard?tab=profile"}>
-                <Dropdown.Item>Profile</Dropdown.Item>
-              </Link>
-              <Dropdown.Divider />
-              <Dropdown.Item onClick={handleSignOut}>Sign Out</Dropdown.Item>
-              <Dropdown.Divider />
-              <DropdownItem
-                className="w-12 h-10"
-                color="grey"
-                onClick={() => dispatch(toggleTheme())}
-              >
-                Switch Mode
-              </DropdownItem>
-              <Dropdown.Divider />
-              <Dropdown.Item>
-                <Link to={"/"}>Home</Link>
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item>
-                <Link to={"/about"}>About</Link>
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item>
-                <Link to={"/projects"}>Projects</Link>
-              </Dropdown.Item>
-            </Dropdown>
-          </>
+              Switch Mode
+            </DropdownItem>
+            <Dropdown.Divider />
+            <Dropdown.Item>
+              <Link to={"/"}>Home</Link>
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item>
+              <Link to={"/about"}>About</Link>
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item>
+              <Link to={"/projects"}>Projects</Link>
+            </Dropdown.Item>
+          </Dropdown>
         ) : (
           <>
             <Button
