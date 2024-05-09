@@ -18,15 +18,18 @@ const OAuth = () => {
     try {
       const resultsFromGoogle = await signInWithPopup(auth, provider);
       console.log(resultsFromGoogle);
-      const res = await fetch("/api/auth/google", {
-        method: "POST",
-        header: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: resultsFromGoogle.user.displayName,
-          email: resultsFromGoogle.user.email,
-          googlePhotoUrl: resultsFromGoogle.user.photoURL,
-        }),
-      });
+      const res = await fetch(
+        "https://mern-blog-api-snowy.vercel.app/api/auth/google",
+        {
+          method: "POST",
+          header: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: resultsFromGoogle.user.displayName,
+            email: resultsFromGoogle.user.email,
+            googlePhotoUrl: resultsFromGoogle.user.photoURL,
+          }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         dispatch(signInSuccess(data));

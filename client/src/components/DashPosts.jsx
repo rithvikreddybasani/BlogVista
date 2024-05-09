@@ -15,7 +15,7 @@ export default function DashPosts() {
     const fetchPosts = async () => {
       try {
         const res = await fetch(
-          `/api/post/getposts?userId=${currentUser.validUser._id}`
+          `https://mern-blog-api-snowy.vercel.app/api/post/getposts?userId=${currentUser.validUser._id}`
         );
         const data = await res.json();
         if (res.ok) {
@@ -31,7 +31,9 @@ export default function DashPosts() {
 
     const fetchPostsAdmin = async () => {
       try {
-        const res = await fetch(`/api/post/getposts`);
+        const res = await fetch(
+          `https://mern-blog-api-snowy.vercel.app/api/post/getposts`
+        );
         const data = await res.json();
         if (res.ok) {
           setUserPosts(data.posts);
@@ -55,7 +57,9 @@ export default function DashPosts() {
     const startIndex = userPosts.length;
     const handleAdmin = async () => {
       try {
-        const res = await fetch(`/api/post/getposts?startIndex=${startIndex}`);
+        const res = await fetch(
+          `https://mern-blog-api-snowy.vercel.app/api/post/getposts?startIndex=${startIndex}`
+        );
         const data = await res.json();
         if (res.ok) {
           setUserPosts((prev) => [...prev, ...data.posts]);
@@ -71,7 +75,7 @@ export default function DashPosts() {
     const handle = async () => {
       try {
         const res = await fetch(
-          `/api/post/getposts?userId=${currentUser.validUser._id}&startIndex=${startIndex}`
+          `https://mern-blog-api-snowy.vercel.app/api/post/getposts?userId=${currentUser.validUser._id}&startIndex=${startIndex}`
         );
         const data = await res.json();
         if (res.ok) {
@@ -96,7 +100,7 @@ export default function DashPosts() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/post/delete/${postIdToDelete}/${currentUser.validUser._id}`,
+        `https://mern-blog-api-snowy.vercel.app/api/post/delete/${postIdToDelete}/${currentUser.validUser._id}`,
         {
           method: "DELETE",
         }

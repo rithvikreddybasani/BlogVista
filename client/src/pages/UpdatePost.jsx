@@ -63,7 +63,7 @@ export default function UpdatePost() {
     e.preventDefault();
     try {
       const res = await fetch(
-        `/api/post/updatepost/${formData._id}/${currentUser.currentUser.validUser._id}`,
+        `https://mern-blog-api-snowy.vercel.app/api/post/updatepost/${formData._id}/${currentUser.currentUser.validUser._id}`,
         {
           method: "PUT",
           headers: {
@@ -90,7 +90,9 @@ export default function UpdatePost() {
   useEffect(() => {
     try {
       const fetchPost = async () => {
-        const res = await fetch(`/api/post/getPosts?postId=${postId}`);
+        const res = await fetch(
+          `https://mern-blog-api-snowy.vercel.app/api/post/getPosts?postId=${postId}`
+        );
         const data = await res.json();
         if (!res.ok) {
           setPublishError(data.message);

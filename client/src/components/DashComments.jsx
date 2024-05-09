@@ -13,7 +13,9 @@ export default function DashComments() {
   useEffect(() => {
     const fetchCommentsAdmin = async () => {
       try {
-        const res = await fetch(`/api/comment/getcomments`);
+        const res = await fetch(
+          `https://mern-blog-api-snowy.vercel.app/api/comment/getcomments`
+        );
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
@@ -29,7 +31,7 @@ export default function DashComments() {
     const fetchComments = async () => {
       try {
         const res = await fetch(
-          `/api/comment/getcomments?userId=${currentUser.validUser._id}`
+          `https://mern-blog-api-snowy.vercel.app/api/comment/getcomments?userId=${currentUser.validUser._id}`
         );
         const data = await res.json();
         if (res.ok) {
@@ -54,7 +56,7 @@ export default function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `/api/comment/getcomments?startIndex=${startIndex}`
+        `https://mern-blog-api-snowy.vercel.app/api/comment/getcomments?startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {
@@ -72,7 +74,7 @@ export default function DashComments() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/comment/deleteComment/${commentIdToDelete}`,
+        `https://mern-blog-api-snowy.vercel.app/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: "DELETE",
         }
