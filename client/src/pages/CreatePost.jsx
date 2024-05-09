@@ -20,6 +20,7 @@ export default function CreatePost() {
   const navigate = useNavigate();
 
   console.log(formData);
+  console.log(currentUser.validUser._id);
 
   const handleUploadImage = async () => {
     try {
