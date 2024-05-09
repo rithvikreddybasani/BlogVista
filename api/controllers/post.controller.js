@@ -20,7 +20,7 @@ exports.create = async (req, res, next) => {
     const newPost = new Post({
       ...req.body,
       slug,
-      userId: req.params.userId,
+      userId: req.query.userId,
     });
 
     // Save post to the database
