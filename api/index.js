@@ -13,9 +13,9 @@ dotenv.config(); // Setting up the environmental variables
 
 app.use(
   cors({
-    origin: ["https://mern-blog-client-eta.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true,
+    origin: "https://mern-blog-client-eta.vercel.app",
+    methods: ["POST","GET","PUT","DELETE"],
+   
   })
 );
 
