@@ -9,11 +9,11 @@ const {
 
 const router = express.Router();
 
-router.post("/create", verifyToken, create);
+router.post("/create",  create);
 
-router.delete("/delete/:postId/:userId", verifyToken, deletePost);
+router.delete("/delete/:postId/:userId",  deletePost);
 
-router.put("/updatepost/:postId/:userId", verifyToken, update);
+router.put("/updatepost/:postId/:userId",  update);
 
 router.get("/getposts", getPosts);
 
