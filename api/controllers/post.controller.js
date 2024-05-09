@@ -80,9 +80,7 @@ exports.getPosts = async (req, res, next) => {
 };
 
 exports.deletePost = async (req, res, next) => {
-  if (req.user.id !== req.params.userId) {
-    return next(errorHandler(403, "You are not allowed to delete this post"));
-  }
+
   try {
     await Post.findByIdAndDelete(req.params.postId);
     res.status(200).json("The post has been deleted");
@@ -92,11 +90,7 @@ exports.deletePost = async (req, res, next) => {
 };
 
 exports.update = async (req, res, next) => {
-  if (req.user.id !== req.params.userId) {
-    console.log(req.params);
-    console.log(req.user);
-    return next(errorHandler(403, "You are not allowed to update this post"));
-  }
+  
   try {
     const updatedPost = await Post.findByIdAndUpdate(
       req.params.postId,
