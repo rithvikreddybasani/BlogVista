@@ -18,7 +18,7 @@ exports.create = async (req, res, next) => {
 
     // Create new post object
     
-    const newPost = await Post.create({title:req.body.title,content:req.body.content,userId:req.query.userId});
+    const newPost = await Post.create({title:req.body.title,content:req.body.content,userId:req.query.userId,slug:slug});
 
     // Save post to the database
     
