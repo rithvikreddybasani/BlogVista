@@ -7,6 +7,7 @@ import { app, storage } from "../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
+import {useSelector} from 'react-redux';
 
 export default function CreatePost() {
   const [file, setFile] = useState(null);
@@ -14,6 +15,7 @@ export default function CreatePost() {
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+   const { currentUser } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
 
@@ -58,7 +60,7 @@ export default function CreatePost() {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://mern-blog-api-snowy.vercel.app/api/post/create",
+        "https://mern-blog-api-snowy.vercel.app/api/post/create?userId=${currentUser.validUser._id}",
         {
           method: "POST",
           headers: {
