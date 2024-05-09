@@ -24,7 +24,7 @@ export default function DashPosts() {
           setUserPosts(data.posts);
           console.log(data.posts);
           if (data.posts.length < 9) {
-            setShowMore(false);
+            setShowMore(true);
           }
         }
       } catch (error) {
