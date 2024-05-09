@@ -69,7 +69,7 @@ export default function CommentSection({ postId }) {
         return;
       }
       const res = await fetch(
-        `https://mern-blog-api-snowy.vercel.app/api/comment/likeComment/${commentId}`,
+        `https://mern-blog-api-snowy.vercel.app/api/comment/likeComment/${commentId}?userId={currentUser.validUser._id}`,
         {
           method: "PUT",
         }
