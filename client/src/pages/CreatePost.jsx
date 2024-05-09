@@ -61,15 +61,16 @@ export default function CreatePost() {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://mern-blog-api-snowy.vercel.app/api/post/create?userId=${currentUser.validUser._id}",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+  `https://mern-blog-api-snowy.vercel.app/api/post/create?userId=${currentUser.validUser._id}`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  }
+);
+
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
