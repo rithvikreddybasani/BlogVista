@@ -79,9 +79,9 @@ const Header = () => {
           className="w-40 h-8 text-xs" // Adjust width and height as needed
         />
       </form>
-      <div className="flex items-center gap-2 md:order-2">
+      <div className="flex items-center gap-2 md:order-2 relative">
         {currentUser && currentUser.validUser ? (
-          <div className="relative">
+          <>
             <Avatar
               alt="user"
               img={currentUser.validUser.profilePicture}
@@ -91,7 +91,7 @@ const Header = () => {
             <Dropdown
               arrowIcon={false}
               style={{ top: "2rem", right: 0 }}
-              className="absolute right-0 z-50"
+              className="absolute z-50"
             >
               <Dropdown.Header>
                 <span className="block text-sm">
@@ -127,7 +127,7 @@ const Header = () => {
                 <Link to={"/projects"}>Projects</Link>
               </Dropdown.Item>
             </Dropdown>
-          </div>
+          </>
         ) : (
           <>
             <Button
