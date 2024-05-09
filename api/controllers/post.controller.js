@@ -17,17 +17,14 @@ exports.create = async (req, res, next) => {
       .replace(/[^\w-]+/g, ""); // Remove non-word characters except hyphens
 
     // Create new post object
-    const newPost = new Post({
-      ...req.body,
-      slug,
-      userId: req.query.userId,
-    });
+    
+    const newPost = await Post.create({title:req.body.title,content:req.body.content,userId:req.query.userId});
 
     // Save post to the database
-    const savedPost = await newPost.save();
+    
 
     // Respond with the saved post object
-    res.status(201).json(savedPost);
+    res.status(201).json(newPost);
   } catch (error) {
     // Pass error to the error handling middleware
     next(error);
