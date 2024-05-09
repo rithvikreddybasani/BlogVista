@@ -19,7 +19,6 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state.theme);
   const [searchTerm, setSearchTerm] = useState("");
@@ -77,22 +76,22 @@ const Header = () => {
           rightIcon={AiOutlineSearch}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-40 h-8 text-xs" // Adjust width and height as needed
         />
       </form>
       <div className="flex items-center gap-2 md:order-2">
         {currentUser && currentUser.validUser ? (
-          <>
+          <div className="relative">
+            <Avatar
+              alt="user"
+              img={currentUser.validUser.profilePicture}
+              rounded
+              className="cursor-pointer"
+            />
             <Dropdown
               arrowIcon={false}
-              style={{ backgroundColor: "transparent", border: "none" }}
-              label={
-                <Avatar
-                  alt="user"
-                  img={currentUser.validUser.profilePicture}
-                  rounded
-                  style={{ margin: "auto" }}
-                />
-              }
+              style={{ top: "2rem", right: 0 }}
+              className="absolute right-0 z-50"
             >
               <Dropdown.Header>
                 <span className="block text-sm">
@@ -128,7 +127,7 @@ const Header = () => {
                 <Link to={"/projects"}>Projects</Link>
               </Dropdown.Item>
             </Dropdown>
-          </>
+          </div>
         ) : (
           <>
             <Button
